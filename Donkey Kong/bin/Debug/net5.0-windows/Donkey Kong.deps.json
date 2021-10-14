@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Donkey Kong/1.0.0": {
+        "runtime": {
+          "Donkey Kong.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Donkey Kong/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
