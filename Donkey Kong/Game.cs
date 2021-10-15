@@ -14,13 +14,13 @@ namespace Donkey_Kong
         public static HashSet<string> keys;
         public static Point lastClickLocation;
         public static Point mouseLocation;
-        public Canvas window;
-        public Girder girder;
+        public Canvas window;        
+        public Toolbar toolbar;
         public static List<Entity> EntityList = new List<Entity>();
         private Thread gameloopthread;
         public int rightScore = 0;
         public int leftScore = 0;
-        // Adding too many static methods is considered bad coding. Static methods should be used for global aspects of a class
+        // Adding too many static methods is considered bad coding. Static methods should be used for global aspects of a class.
         private ManualResetEvent pause = new ManualResetEvent(true);
         public bool ShowGameOver = false;
         public bool CanvasClosed = false;
@@ -38,7 +38,7 @@ namespace Donkey_Kong
             canvas.MouseMove += Canvas_MouseMove;
             canvas.Paint += Canvas_Renderer;
             keys = new HashSet<string>();
-            girder = new Girder();
+            toolbar = new Toolbar();
         }
 
         public void PauseGame()
@@ -75,7 +75,7 @@ namespace Donkey_Kong
 
         public void Canvas_KeyRelease(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)  // if the player releases the A key, the velocity is set to 0, this is repeated for the D and W keys below
+            if (e.KeyCode == Keys.Left)  // if the player releases the A key, the velocity is set to 0, this is repeated for the D and W keys below.
             { keys.Remove("left"); }
             if (e.KeyCode == Keys.Right)
             { keys.Remove("right"); }
@@ -97,8 +97,14 @@ namespace Donkey_Kong
         {
             Graphics graphics = e.Graphics;
             graphics.Clear(Color.Black);
-            girder.Update();
-            girder.Render(graphics);
+           for(int i = 0; i < EntityList.Count; i++)
+            {
+                EntityList[i].Update();
+            }
+            for (int i = 0; i < EntityList.Count; i++)
+            {
+                EntityList[i].Render(graphics);
+            }
         }
         private void Gameloop()
         {
